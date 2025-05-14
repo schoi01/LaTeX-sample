@@ -45,7 +45,7 @@ This sample demonstrates:
 
 **Name:** Suyeon Choi  
 **Email:** suyeon.choi01@gmail.com
-**GitHub:** github.com/schoi01
-**LinkedIn:** linkedin.com/in/suyeon-choi/
+**GitHub:** https://github.com/schoi01
+**LinkedIn:** https://linkedin.com/in/suyeon-choi/
 
 > 📎 *Note: This sample is for demonstration purposes only and represents personal academic work.*
