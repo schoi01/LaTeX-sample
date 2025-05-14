@@ -44,8 +44,8 @@ This sample demonstrates:
 ## 📧 Contact
 
 **Name:** Suyeon Choi  
-**Email:** [suyeon.choi01@gmail.com]
-**GitHub:** [github.com/schoi01]  
-**LinkedIn:** [linkedin.com/in/suyeon-choi/]
+**Email:** suyeon.choi01@gmail.com
+**GitHub:** github.com/schoi01
+**LinkedIn:** linkedin.com/in/suyeon-choi/
 
 > 📎 *Note: This sample is for demonstration purposes only and represents personal academic work.*
