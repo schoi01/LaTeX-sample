@@ -1,0 +1,372 @@
+%% Standard start of a latex document
+\documentclass[letterpaper,12pt]{article}
+%% Always use 12pt - it is much easier to read
+%% Things written after '%' sign, are ignored by the latex editor - they are how to introduce comments into your .tex source
+%% Anything mathematics related should be put in between '$' signs.
+
+%% Set some names and numbers here so we can use them below
+\newcommand{\myname}{ } %%%%%%%%%%%%%%% ---------> Change this to your name
+\newcommand{\mynumber}{ } %%%%%%%%%%%%%%% ---------> Change this to your student number
+\newcommand{\hw}{number...} %%%%%%%%%%%%%%% --------->  set this to the homework number
+
+%%%%%%
+%% There is a bit of stuff below which you should not have to change
+%%%%%%
+
+%% AMS mathematics packages - they contain many useful fonts and symbols.
+\usepackage{amsmath, amsfonts, amssymb}
+\allowdisplaybreaks
+
+%% The geometry package changes the margins to use more of the page, I suggest
+%% using it because standard latex margins are chosen for articles and letters,
+%% not homework.
+\usepackage[paper=letterpaper,left=25mm,right=25mm,top=3cm,bottom=25mm]{geometry}
+%% For details of how this package works, google the ``latex geometry documentation''.
+
+%%
+%% Fancy headers and footers - make the document look nice
+\usepackage{fancyhdr} %% for details on how this work, search-engine ``fancyhdr documentation''
+\pagestyle{fancy}
+%%
+%% The header
+\lhead{Mathematics 257/316} % course name as top-left
+\chead{Homework 6} % homework number in top-centre
+\rhead{ \myname \\ \mynumber }
+%% This is a little more complicated because we have used `` \\ '' to force a line-break between the name and number.
+%%
+%% The footer
+\lfoot{\myname} % name on bottom-left
+\cfoot{Page \thepage} % page in middle
+\rfoot{\mynumber} % student number on bottom-right
+%%
+%% These put horizontal lines between the main text and header and footer.
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+%%%
+
+
+% Some useful macros
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumerate}
+\usepackage{color}
+
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\NN}{\mathbb{N}}
+\renewcommand\vec{\mathbf}
+
+\newcommand{\st}{\text{ such that } }
+\newcommand{\dee}[1]{\mathrm{d}#1}
+\newcommand{\diff}[2]{ \frac{\dee{#1}}{\dee{#2}} }
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\set}[1]{\left\{#1 \right\}}
+\newcommand{\dig}[1]{\left\langle{#1}\right\rangle}
+\newcommand{\closure}[1]{\overline{#1}}
+\newcommand{\interior}[1]{\mathrm{int}\left(#1\right)}
+\newcommand{\boundary}[1]{\delta\left(#1\right)}
+\newcommand{\ceiling}[1]{\left\lceil #1 \right\rceil}
+
+\usepackage{mdframed}
+
+\begin{document}
+% Put your answers as items in this enumerated environment and they will be automatically numbered
+
+\begin{enumerate}[Q1.]
+    \item We consider consider the following problem:
+    \begin{align*}
+        \frac{\partial u}{\partial x^2} = 4 \frac{\partial u}{\partial t}, \quad 0 < x < 2, t> 0 \\
+        u(0,t) = 0 \text{ and } u(2,t) = 0 \text{ for } t>0 \\
+        u(x,0) = 2 \sin{\frac{\pi x}{2}} + 4 \sin (2\pi x), \quad 0 \leq x \leq 2
+    \end{align*}
+    Solve for $u(x,t)$.
+   \begin{mdframed}[leftmargin=-2cm]
+        \textbf{Answer:}
+        \item Assume a solution of the form: $u(x, t)=T(t) X(x)$.
+        \item Then $u_{x x}=T(t) X^{\prime \prime}(x); \quad u_t=\dot{T}(t) X(x)$.
+        \item Substituting these into the equation:
+        \begin{align*}
+            &T(t) X^{\prime \prime}(x)=4 \dot{T}(t) X(x)\\
+            \Rightarrow &\frac{4 \dot{T}(t)}{T(t)}=\frac{X^{\prime \prime}(x)}{X(x)}=\lambda, \text{ for some constant } \lambda\\
+            \Rightarrow & \dot{T}(t)=\frac{1}{4} \lambda T(t) \quad ; \quad X^{\prime \prime}(x)=\lambda X(x)
+        \end{align*}
+        \item So for the time-dependent part, its solution is $T(t)=C e^{\frac{\lambda}{4} t}, \quad C$ constant.
+        \item Using the boundary conditions, we have:
+            $$
+            u(x, t)=T(t) X(x) \Rightarrow T(t) X(0)=0=T(t) X(2) \Rightarrow X(0)=X(2)=0
+            $$
+        \item So the eigenvalue problem is:
+            $$
+            \begin{aligned}
+            & X^{\prime \prime}(x)=\lambda X(x), \quad \text { with } \\
+            & X(0)=X(2)=0, \quad(0<x<2) .
+            \end{aligned}
+            $$
+        \item \textbf{CASE 1:} $\lambda>0$ :
+        \item Let $\lambda=\mu^2$, then:
+            $$
+            X^{\prime \prime}(x)-\mu^2 X(x)=0
+            $$
+        \item Since the characteristic equation: $r^2-\mu^2=0 \Rightarrow r= \pm \mu$, the general solution is :
+            $$
+            X(x)=A e^{\mu x}+B e^{-\mu x}
+            $$
+        \item Applying the boundary conditions:
+            $$
+            \begin{aligned}
+            X(0) & =A+B=0 \Rightarrow B=-A \\
+            \Rightarrow X(x) & =A\left(e^{\mu x}-e^{-\mu x}\right)=2 A \sinh (\mu x) \\
+            X(2) & =2 A \sinh (2 \mu)=0
+            \end{aligned}
+            $$
+        \item Since $\sinh (2 \mu)>0$ for $\mu>0$, it must be true that $A=0=B$, leading to a trivial solution.
+        \item \textbf{CASE 2:} $\lambda=0$ :
+        \item The equation becomes:
+            $$
+            X^{\prime \prime}(x)=0 \Rightarrow X^{\prime}(x)=A ; \quad X(x)=A x+B
+            $$
+        \item Applying the boundary conditions:
+            $$
+            \begin{aligned}
+            & X(0)=B=0 \\
+            & X(2)=2 A=0 \Rightarrow A=0
+            \end{aligned}
+            $$
+            $$
+            A=B=0 \text { gives a trivial solution. }
+            $$
+        \item \textbf{CASE 3:} $\lambda<0$ :
+        \item Let $\lambda=-\mu^2$, then:
+            $$
+            X^{\prime \prime}+\mu^2 X=0
+            $$
+        \item Since the characteristic equation: $r^2+\mu^2=0 \Rightarrow r= \pm i \mu$, the general solution is:
+            $$
+            X(x)=A \cos (\mu x)+B \sin (\mu x)
+            $$
+        \item Applying the boundary conditions:
+            $$
+            \begin{aligned}
+            X(0) & =A=0 \\
+            \Rightarrow \quad X(x) & =B \sin (\mu x) \\
+            X(2) & =B \sin (2 \mu)=0
+            \end{aligned}
+            $$
+        \item For a non-trivial solution $(B \neq 0)$, we need:
+            $$
+            \sin (2 \mu)=0 \quad \Rightarrow \quad 2 \mu=n \pi, \quad n=1,2,3, \ldots
+            $$
+        \item Thus, nontrivial solution exists for
+            $$
+            \mu=\frac{n \pi}{2} \text { and } \lambda_n=-\left(\frac{n \pi}{2}\right)^2
+            $$
+        \item The corresponding eigenfunction are:
+            $$
+            X_n(x)=B_n \sin \left(\frac{n \pi x}{2}\right), \quad n=1,2,3, \ldots
+            $$
+        \item Since $B_n$ gets absorbed into the Fourier coefficients later, without the loss of generality, we can choose:
+            $$
+            X_n(x)=\sin \left(\frac{n \pi x}{2}\right), \quad n=1,2,3, \ldots
+            $$
+        \item So the solution will have the form:
+            $$
+            u_n(x, t)=\sin \left(\frac{n \pi x}{2}\right) e^{-\left(\frac{n \pi}{4}\right)^2 t}, n=1,2,3, \ldots
+            $$
+        \item Since the equation is linear, the most general solution is of the form:
+            $$
+            u(x, t)=\sum_{n=1}^{\infty} A_n \sin \left(\frac{n \pi x}{2}\right) e^{-\left(\frac{n \pi}{4}\right)^2 t} \text {, for some coefficients } A_n, n=1,2,3, \ldots
+            $$
+        \item Using the initial condition $u(x, 0)=2 \sin \left(\frac{\pi x}{2}\right)-\sin (\pi x)+4 \sin (2 \pi x)$ :
+            $$
+            2 \sin \left(\frac{\pi x}{2}\right)-\sin (\pi x)+4 \sin (2 \pi x)=\sum_{n=1}^{\infty} A_n \sin \left(\frac{n \pi x}{2}\right)
+            $$
+        \item Note that $\sin \left(\frac{\pi x}{2}\right)$ corresponds to $n=1, \sin (\pi x)=\sin \left(\frac{2 \pi x}{2}\right)$ corresponds to $n=2$, and $\sin (2 \pi x)=\sin \left(\frac{4 \pi x}{2}\right)$ corresponds to $n=4$.
+        \item So the Fourier coefficients are:
+            $$
+            A_1=2, \quad A_2=-1, A_4=4 \text {, and } A_n=0 \text { for all the other } n \text {. }
+            $$
+        \item Thus, the final solution to this equation is:
+            \begin{align*}
+            u(x, t)&=2 \sin \left(\frac{\pi x}{2}\right) e^{-\frac{\pi^2}{16} t}-\sin (\pi x) e^{-\frac{4 \pi^2}{16} t}+4 \sin (2 \pi x) e^{-\frac{16 \pi^2}{16} t} \\
+            & =2 \sin \left(\frac{\pi x}{2}\right) e^{-\frac{\pi^2}{16} t}-\sin (\pi x) e^{-\frac{\pi^2}{4} t}+4 \sin (2 \pi x) e^{-\pi^2 t}
+            \end{align*}
+        \end{mdframed}
+\end{enumerate}
+\pagebreak
+\begin{enumerate}[Q2.]
+    \item We consider the problem of heat diffusion in a metal rod of length $L = 1$.
+    \begin{align*}
+        \frac{\partial u}{\partial t} - \frac{\partial ^2u}{\partial x^2} = 0, \text{ for } 0 < x < 1 \text{ and } t \geq 0 \\
+        u(0,t) = 0 \text{ and } \frac{\partial u}{\partial x} (1,t) = 0, \text{ for } t > 0 \\
+        u(x,0) = x(1-x) \text{ for } 0 \leq x \leq 1
+    \end{align*}
+    Determine the temperature $u(x,t)$ using the method of separation of variables.
+    \setcounter{equation}{0} 
+    \begin{mdframed}[leftmargin=-2cm]
+            \textbf{Answer:}
+            \item Assume a solution of the form: $u(x, t)=X(x) T(t)$
+            \item Then $u_t=X(x) \dot{T}(t); \quad u_{x x}=X^{\prime \prime}(x) T(t)$
+            \item Substituting these into the PDE:
+                $$
+                \begin{array}{ll} 
+                & X(x) \dot{T}(t)-X^{\prime \prime}(x) T(t)=0 \\
+                \Rightarrow & X(x) \dot{T}(t)=X^{\prime \prime}(x) T(t)
+                \end{array}
+                $$
+                $$
+                \Rightarrow \frac{\dot{T}(t)}{T(t)}=\frac{X^{\prime \prime}(x)}{X(x)}=\lambda, \quad \text { for some constant } \lambda
+                $$
+            \item So the time-dependent ODE: $\dot{T}(t)=\lambda T(t) \Rightarrow T(t)=e^{\lambda t}$
+            \item And the spatial ODE: $X^{\prime \prime}(x)-\lambda X(x)=0$
+            \item Using the boundary conditions, we have:
+                $$
+                \left.\begin{array}{l}
+                u(x, t)=X(x) T(t) \Rightarrow u(0, t)=X(0) T(t)=0 \\
+                u_x(x, t)=X^{\prime}(x) T(t) \Rightarrow u_x(1, t)=X^{\prime}(1) T(t)=0
+                \end{array}\right\} \Rightarrow X(0)=0=X^{\prime}(1)
+                $$
+            \item So the eigenvalue problem is:
+                $$
+                \begin{aligned}
+                & X^{\prime}(x)-\lambda X(x)=0, \quad \text { with } \\
+                & X(0)=0, \quad X^{\prime}(1)=0
+                \end{aligned}
+                $$
+            \item \textbf{CASE 1:} $\lambda>0$ :
+            \item Let $\lambda=\mu^2$, then:
+                $X^{\prime}(x)-\mu^2 X(x)=0$, so the general solution is
+                $$
+                X(x)=A e^{\mu x}+B e^{-\mu x}
+                $$
+            \item Applying the boundary conditions:
+                $$
+                \begin{aligned}
+                X(0) & =A+B=0 \Rightarrow B=-A \\
+                \Rightarrow X(x) & =A\left(e^{\mu x}-e^{-\mu x}\right)=2 A \sinh (\mu x) \Rightarrow X^{\prime}(x)=2 \mu A \cosh (\mu x) \\
+                X^{\prime}(1) & =2 \mu A \cosh (\mu)
+                \end{aligned}
+                $$
+            \item Since $\cosh (\mu)>0$ for $\mu>0$, it must be true that $A=0=B$, leading to a trivial solution. 
+            \item \textbf{CASE 2:} $\lambda=0$ :
+            \item The equation becomes:
+                $$
+                X^{\prime \prime}(x)=0 \Rightarrow X^{\prime}(x)=A ; X(x)=A x+B
+                $$
+            \item Applying the boundary conditions:
+                $$
+                \begin{aligned}
+                & X(0)=B=0 \\
+                & X^{\prime}(1)=A=0
+                \end{aligned}
+                $$
+            \item $A=B=0$ gives a trivial solution.
+            \item \textbf{CASE 3:} $\lambda<0$ :
+            \item Let $\lambda=-\mu^2$, then:
+                $$
+                X^{\prime \prime}+\mu^2 X=0
+                $$
+            \item Since the characteristic equation: $r^2+\mu^2=0 \Rightarrow r= \pm i \mu$, the general solution is:
+                $$
+                X(x)=A \cos (\mu x)+B \sin (\mu x)
+                $$
+            \item Applying the boundary conditions:
+                \begin{align*}
+                X(0)&=A=0\\
+                \Rightarrow X(x)&=B \sin (\mu x) \Rightarrow X^{\prime}(x)=\mu B \cos (\mu x) \\
+                X^{\prime}(1)&=\mu B \cos (\mu)=0
+                \end{align*}
+            \item For a nontrivial solution $(B \neq 0)$, we require:
+                \begin{align*}
+                \cos (\mu)=0 \Rightarrow \mu=\frac{\pi}{2}+n \pi, \quad n=0,1,2,3, \ldots
+                \end{align*}
+            \item Thus, a nontrivial solution exists for
+                \begin{align*}
+                \mu=\frac{(2n+1) \pi}{2}, \quad \lambda=-\left[\frac{(2 n+1) \pi}{2}\right]^{2}
+                \end{align*}
+            \item The corresponding eigenfunctions are:
+                \begin{align*}
+                X_{n}(x)=B_{n} \sin \left(\frac{(2 n+1) \pi}{2} x\right), \quad n=0,1,2,3, \ldots
+                \end{align*}
+            \item So the solution will have the form:
+                \begin{align*}
+                u_{n}(x, t)=\sin \left(\frac{(2 n+1) \pi}{2} x\right) e^{-\frac{(2 n+1)^{2} \pi^{2}}{4} t}, \quad n=0,1,2,3, \ldots
+                \end{align*}
+           \item Since the equation is linear, the most general solution is of the form:
+                \begin{align*}
+                u(x, t)=\sum_{n=0}^{\infty} A_{n} \sin \left(\frac{(2 n+1) \pi}{2} x\right) e^{-\frac{(22+1)^{2} \pi^{2}}{4} t}, \quad \text { for some constant } A_{n}, n=0,1,2,3, \ldots
+                \end{align*}
+            \item Applying the initial condition $u(x, 0)=x(1-x)$ :
+                \begin{align}
+                \sum_{n=0}^{\infty} A_{n} \sin \left(\frac{(2 n+1) \pi}{2} x\right)=x(1-x)
+                \end{align}
+            \item Because $\sin \left(\frac{(2 n+1) \pi}{2} x\right)$ is orthogonal over the interval $[0,1]$, we multiply both sides of $(1)$ by $\sin \left(\frac{(2 m+1) \pi}{2} x\right)$ and integrate over $[0,1]$:
+            \begin{align}
+                \sum_{n=0}^{\infty} A_{n} \int_{0}^{1} \sin \left(\frac{(2 n+1) \pi}{2} x\right) \sin \left(\frac{(2 m+1) \pi}{2} x\right) d x=\int_{0}^{1}\left(x-x^{2}\right) \sin \left(\frac{(2 m+1) \pi}{2} x\right) d x
+            \end{align}
+            \item The orthogonal property tells us that:
+                \begin{align*}
+                \int_{0}^{1} \sin \left(\frac{(2 n+1) \pi}{2} x\right) \sin \left(\frac{(2 m+1) \pi}{2} x\right) d x= \begin{cases}0, & \text { if } n \neq m \\ \frac{1}{2}, & \text { if } n=m .\end{cases}
+                \end{align*}
+            \item So (2) becomes:
+                \begin{align*}
+                A_{m} \frac{1}{2}=\int_{0}^{1}\left(x-x^{2}\right) \sin \left(\frac{(2 m+1) \pi}{2} x\right) d x
+                \end{align*}
+            \item Thus, the coefficient is
+                \begin{align*}
+                A_{m} & =2 \int_{0}^{1}\left(x-x^{2}\right) \sin \left(\frac{(2 m+1) \pi}{2} x\right) d x \\
+                & =2\left[\int_{0}^{1} x \sin \left(\frac{(2 m+1) \pi}{2} x\right) d x-\int_{0}^{1} x^{2} \sin \left(\frac{(2 m+1) \pi}{2} x\right) d x\right]
+                \end{align*}
+            \item Let $\mu=\frac{(2 m+1) \pi}{2}$ for simplicity.
+            \item Simplifying $A_{m}$ using integration by parts:
+            \item For $\int_{0}^{1} x \sin (\mu x) d x $ term:
+            \item Take $=x, \quad dv = \sin (\mu x) dx$
+            \item $\Rightarrow d u=d x, \quad v=-\frac{1}{\mu} \cos (\mu x)$
+            \item $\Rightarrow \int_{0}^{1} x \sin (\mu x) d x =\left[-\frac{x}{\mu} \cos (\mu x)\right]_{0}^{1}+\frac{1}{\mu} \int_{0}^{1} \cos (\mu x) d x$
+            \item $\qquad \qquad \qquad \qquad =-\frac{1}{\mu} \cos (\mu)+\frac{1}{\mu}\left[\frac{1}{\mu} \sin (\mu x)\right]_{0}^{1}$
+            \item $\qquad \qquad \qquad \qquad =-\frac{\cos (\mu)}{\mu}+\frac{\sin (\mu)}{\mu^{2}}$
+            \item For $\int_{0}^{1} x^{2} \sin (\mu x) d x$ term:
+            \item Take $u=x^{2}, \quad d v=\sin (\mu x) d x$
+            \item $\Rightarrow d u=2 x d x, v=-\frac{1}{\mu} \cos (\mu x)$
+            \item $\Rightarrow \int_{0}^{1} x^{2} \sin (\mu x) d x=\left[-\frac{x^{2}}{\mu} \cos (\mu x)\right]_{0}^{1}+\frac{2}{\mu} \int_{0}^{1} x \cos (\mu x) d x$
+            \item $\qquad \qquad \qquad \qquad =-\frac{\cos (\mu)}{\mu}+\frac{2}{\mu} \int_{0}^{1} x \cos (\mu x) d x$
+            \item Take $u=x, \quad d v=\cos (\mu x) d x$
+            \item $\qquad \qquad \quad \Rightarrow d u=d x, \quad v=\frac{1}{\mu} \sin (\mu x)$
+            \item \begin{align*}
+            \begin{aligned}
+            \Rightarrow-\frac{\cos (\mu)}{\mu}+\frac{2}{\mu} \int_{0}^{1} x \cos (\mu x) d x & =-\frac{\cos (\mu)}{\mu}+\frac{2}{\mu}\left\{\left[\frac{x}{\mu} \sin (\mu x)\right]_{0}^{1}-\frac{1}{\mu} \int_{0}^{1} \sin (\mu x) d x\right\} \\
+            & =-\frac{\cos (\mu)}{\mu}+\frac{2}{\mu}\left[\frac{\sin (\mu)}{\mu}+\frac{1}{\mu}\left[\frac{1}{\mu} \cos (\mu x)\right]_{0}^{1}\right] \\
+            & =-\frac{\cos (\mu)}{\mu}+\frac{2}{\mu}\left[\frac{\sin (\mu)}{\mu}+\frac{\cos (\mu)-1}{\mu^{2}}\right] \\
+            & =-\frac{\cos (\mu)}{\mu}+\frac{2 \sin (\mu)}{\mu^{2}}+\frac{2(\cos (\mu)-1)}{\mu^{3}}
+            \end{aligned}
+            \end{align*}
+            \item So the coefficient is:
+            \begin{align*}
+            \begin{aligned}
+            A_{m} & =2\left[\int_{0}^{1} x \sin \left(\frac{(2 m+1) \pi}{2} x\right) d x-\int_{0}^{1} x^{2} \sin \left(\frac{(2 m+1) \pi}{2} x\right) d x\right] \\
+            & =2\left[-\frac{\cos (\mu)}{\mu}+\frac{\sin (\mu)}{\mu^{2}}+\frac{\cos (\mu)}{\mu}-\frac{2 \sin (\mu)}{\mu^{2}}-\frac{2(\cos \mu-1)}{\mu^{3}}\right] \\
+            & =2\left[-\frac{\sin \mu}{\mu^{2}}-\frac{2(\cos \mu-1)}{\mu^{3}}\right] \\
+            & =2\left[-\frac{\sin \left(\frac{(2 m+1) \pi}{2}\right)}{\left(\frac{(2 m+1) \pi}{2}\right)^{2}}-\frac{2\left[\cos \left(\frac{(2 m+1) \pi}{2}\right)-1\right]}{\left(\frac{(2 m+1) \pi}{2}\right)^{3}}\right]
+            \end{aligned}
+            \end{align*}
+            \item Note that $\sin \left(\frac{(2 m+1) \pi}{2}\right)=(-1)^{m}$ and $\cos \left(\frac{(2 m+1) \pi}{2}\right)=0$, for $m=0,1,2, \ldots$
+            So 
+            \begin{align*}
+            \begin{aligned}
+                A_{m}&=2\left[-\frac{4(-1)^{m}}{(2 m+1)^{2} \pi^{2}}-\frac{16(-1)}{(2 m+1)^{3} \pi^{3}}\right]\\
+            & =\frac{32}{(2 m+1)^{3} \pi^{3}}-\frac{8(-1)^{m}}{(2 m+1)^{2} \pi^{2}} \\
+            & =\frac{8}{(2 m+1)^{2} \pi^{2}}\left[\frac{4}{(2 m+1) \pi}-(-1)^{m}\right], \qquad m=0,1,2, \ldots
+            \end{aligned}
+            \end{align*}
+            \item And the solution is:
+            \begin{align*}
+            u(x, t)=\sum_{n=0}^{\infty} \frac{8}{(2 n+1)^{2} \pi^{2}}\left[\frac{4}{(2 n+1) \pi}-(-1)^{n}\right] \sin \left(\frac{(2 n+1) \pi}{2} x\right) e^{-\frac{(2 n+1)^{2} \pi^{2}}{4} t}
+\end{align*}
+            
+        \end{mdframed}
+    \end{enumerate}
+
+\end{document}
